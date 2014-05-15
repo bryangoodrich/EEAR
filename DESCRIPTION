@@ -1,0 +1,15 @@
+Package: EEAR
+Title: Energy Efficiency Analytics
+Description: An R framework for analyzing smart meter data
+    for energy efficiency analytics
+Version: 0.2
+Author: Bryan Goodrich <Bryan.Goodrich@smud.org>
+Maintainer: Bryan Goodrich <Bryan.Goodrich@smud.org>
+Depends:
+    R (>= 3.0),
+    ggplot2,
+    scales,
+    dplyr
+License: GPL-2
+VignetteBuilder: knitr
+LazyData: true

@@ -1,0 +1,52 @@
+<!--
+%\VignetteEngine{knitr::docco_linear}
+%\VignetteIndexEntry{An Introduction to the SMUD Package}
+-->
+
+Incorporating Temperature in EE Analytics
+========================================================
+
+```{r setup, include=FALSE}
+library(knitr)
+library(EEAR)
+opts_chunk$set(out.extra='style="display:block; margin: auto"', fig.align="center")
+```
+
+Import
+--------------------------------------------------------
+Read Data into this session
+
+```{r, message=FALSE}
+ex1 <- prepare(OfficeMeter)
+```
+
+Temperature Handling
+--------------------------------------------------------
+
+Temperatures to use need to align by timestamp and can come from any tabular source. By default, the data stored in the EEAR package temperatures.Rds will be loaded. However, if you want to use an alternative source, the file must be specified.
+
+
+```{r, eval=FALSE}
+set_temperature_handle("weather.Rds")
+```
+```{r}
+get_temperature_handle()
+```
+
+These two "accessor" commands allow you to access the temperature handle reference (name and memory location as environment object) or set it. 
+
+While the functions that use temperatures should adjoin the data and temperature table stogether using the temperature handle, one can do the joining manually using `with_temperature`. 
+
+
+Visualization
+---------------------------------------------------
+
+The basic temperature visualization is the daily average scatter between kW demanded and temperature. While provided, instantaneous temperature to intervals are not highly correlated. A lag option is going to be considered in later versions.
+
+As in the profile plots, these weather plots can be faceted by various factors, such as day of week, workweek, or months.
+
+```{r}
+weather_plot(ex1)
+weather_plot(ex1, "interval")
+weather_plot(ex1, facets = "workweek")
+```

@@ -1,0 +1,28 @@
+\name{read_meter}
+\alias{read_meter}
+\title{Read a meter data set}
+\usage{
+read_meter(file = file.choose(), header = FALSE,
+  tz = "America/Los_Angeles", ...)
+}
+\arguments{
+  \item{file}{A path to a meter data file. Defaults to a
+  GUI selection.}
+
+  \item{header}{Logical. Are there first row headers.
+  (Default FALSE)}
+
+  \item{tz}{A timezone specificaton to be used for the
+  conversion. Defaults to America/Los_Angeles.}
+
+  \item{\dots}{Further parameters passed to read.csv}
+}
+\value{
+a data frame table object (dplyr)
+}
+\description{
+Imports a csv file containing a 3-tuple (meter id, time
+stamp, kW). Timestamps are expected to be provided as GMT
+(UTC) without DST.
+}
+

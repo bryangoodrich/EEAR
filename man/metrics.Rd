@@ -1,0 +1,32 @@
+\name{metrics}
+\alias{metrics}
+\title{Calculates a Table of Metrics}
+\usage{
+metrics(x, group = NULL, metrics = NULL, trim = 0.1, type = 7,
+  na.rm = TRUE)
+}
+\arguments{
+  \item{x}{a data table}
+
+  \item{group}{By what groupings are these calculations to
+  be based on.}
+
+  \item{metrics}{Vector of functions for which calculations
+  will be generated.}
+
+  \item{trim}{The trim value for trimmed mean calculations}
+
+  \item{type}{The type of percentile to be calculated. See
+  quantile for details.}
+
+  \item{na.rm}{Logical. Should NA values be removed before
+  calculation. Default TRUE.}
+}
+\value{
+A data table
+}
+\description{
+A general function for producing tabular calculations
+according to given facets and provided metrics.
+}
+

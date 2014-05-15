@@ -1,0 +1,87 @@
+<!--
+%\VignetteEngine{knitr::docco_linear}
+%\VignetteIndexEntry{An Introduction to Energy Efficiency Analytics}
+-->
+
+Introducing R for Energy Efficiency Analytics
+========================================================
+
+```{r setup, include=FALSE}
+library(knitr)
+library(EEAR)
+opts_chunk$set(out.extra='style="display:block; margin: auto"', fig.align="center")
+```
+
+This package offers a high-level command-line interface for analyzing and visually exploring meter data for identify potential EE touch points. This tutorial will introduce the expectations and assumptions about the data sources, and the intended approach to conducting an evaluation of a site.
+
+
+Importing Data
+--------------------------------------------------------
+
+Data is read into R using `read_meter`. Without parameters, it defaults to loading a selection prompt for the user to manually select the data file. Otherwise, a character string indicating the path to the file is required. All other parameters are passed to `read.table`. Defaults for `read.table` are used.
+
+Meter data files require a certain 3-column format, represented by the triple \<meter id, time stamp, kW\>. 
+
+The time stamp is expected to be in standard POSIX format (`yyyy-mm-dd hh:mm:ss tz`). The time zone (`tz`) should be GMT (UTC) without daylight standard time (DST).
+
+Future versions will allow the user to use the IEE bulk export format in XML by using `read_xml` (pending). Alternatively, a hosted interconnection to a database source will be explored as time permits.
+
+**Demonstration**
+
+[somedata.csv]
+    201 2012-01-01 00:00:00 268.80
+    201 2012-01-01 00:15:00 270.72
+    201 2012-01-01 00:30:00 271.68
+    201 2012-01-01 00:45:00 268.80
+    201 2012-01-01 01:00:00 266.88
+    201 2012-01-01 01:15:00 268.80
+    201 2012-01-01 01:30:00 267.84
+    201 2012-01-01 01:45:00 270.72
+    201 2012-01-01 02:00:00 264.96
+    201 2012-01-01 02:15:00 259.20
+
+```{r, message=FALSE, eval=FALSE}
+ex <- read_meter("somedata.csv")
+ex <- read_meter()  # manually select some data through prompt
+```
+
+Data Preparation
+--------------------------------------------------------
+
+After data is imported into the R environment (memory), it needs to be prepared for analysis using `prepare`. This workhorse command allows meters to be "rolled up" (aggregated) either by totals or averages. Filter is also performed by day-of-week, date ranges, or time-of-day. 
+
+```{r}
+ex <- OfficeMeter  # pre-defined data set
+ex1 <- prepare(ex, totalized = FALSE)  # Average roll up
+ex2 <- prepare(ex, days = 2:6)  # Weekdays only
+ex3 <- prepare(ex, start_time = "12:00")  # Only afternoon usage
+summary(ex1); ex1
+summary(ex2); ex2
+summary(ex3); ex3
+```
+
+```{r, include=FALSE}
+rm(ex2,ex3, ex)
+```
+
+Visualizations
+--------------------------------------------------------
+
+There are currently 3 primary visualizations supported for identifying usage trends. These are the profile plot, the trend plot, and the weather plot. 
+
+The profile plot averages profile lines according to some period. The default is the average day of the week for the entire data set. Included are also workweek, every day, month, and season. These can be faceted or paneled (separate plots) by week, month, quarter, season, or year if the line type logically corresponds to that faceting. 
+
+The trend plot shows the monthly, weekly, or daily average along with the range. While not exciting, one can replicate simply showing the actual trend with a simple one-line command.
+
+**demonstration**
+
+```{r}
+profile_plot(ex1)
+profile_plot(ex1, "workweek")
+profile_plot(ex1, "season")
+profile_plot(ex1, "year")
+trend_plot(ex1)
+trend_plot(ex1, "week")
+trend_plot(ex1, "day")
+```
+
