@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr::docco_linear}
-%\VignetteIndexEntry{An Introduction to the SMUD Package}
+%\VignetteIndexEntry{Adding weather to your Energy Efficiency Analytics}
 -->
 
 Incorporating Temperature in EE Analytics

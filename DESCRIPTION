@@ -10,6 +10,8 @@ Depends:
     ggplot2,
     scales,
     dplyr
+Suggests:
+    knitr
 License: GPL-2
 VignetteBuilder: knitr
 LazyData: true
