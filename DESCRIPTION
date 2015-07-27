@@ -11,7 +11,7 @@ Depends:
     scales,
     dplyr
 Suggests:
-    knitr
+    knitr,
     shiny
 License: GPL-2
 VignetteBuilder: knitr
