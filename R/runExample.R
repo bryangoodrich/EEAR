@@ -5,9 +5,10 @@
 #' 
 #' @param example Name of an available Shiny example
 #' @export
+#' @rdname runExample
 runExample <- function(example) {
     # locate all the shiny app examples that exist
-    validExamples <- list.files(system.file("shiny-examples", package = "mypackage"))
+    validExamples <- list.files(system.file("shiny-examples", package = "EEAR"))
     
     validExamplesMsg <-
         paste0(
@@ -25,6 +26,6 @@ runExample <- function(example) {
     }
     
     # find and launch the app
-    appDir <- system.file("shiny-examples", example, package = "mypackage")
+    appDir <- system.file("shiny-examples", example, package = "EEAR")
     shiny::runApp(appDir, display.mode = "normal")
 }

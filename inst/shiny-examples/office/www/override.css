@@ -1,0 +1,103 @@
+select {
+    max-width: 300px;
+}
+
+textarea {
+    max-width: 150px;
+}
+
+.well {
+    max-width: 300px;
+}
+
+.span4 {
+    max-width: 310px;
+}
+
+#days>* {
+    display:inline-block;
+}
+
+#days {
+    display:inline-block;
+}
+
+#meters>* {
+    display:inline-block;
+}
+
+#meters {
+    display:inline-block;
+}
+
+
+
+
+
+#time-controls .selectize-control {
+    display:inline-block;
+}
+
+
+#time-controls .control-label {
+    display:inline;
+}
+
+#time-controls .item {
+    padding-right: 10px;
+}
+
+#time-controls .selectize-dropdown-content {
+    width:100px;
+}
+
+
+.inline-controls .control-label {
+    display:inline;
+}
+
+.inline-controls .item {
+    padding-right: 10px;
+}
+
+
+.inline-controls > *:not(script) {
+    display:inline-block;
+}
+
+#inline-days>* {
+    display:inline-block;
+}
+
+#inline-days {
+    display:inline-block;
+}
+
+
+
+
+
+#profile_title>* {
+    width: 300px;
+}
+
+#profile_title {
+    width: 300px;
+}
+
+#profile_xlab>* {
+    width: 100px;
+}
+
+#profile_ylab>* {
+    width: 100px;
+}
+
+#profile_xlab {
+    width: 100px;
+}
+
+#profile_ylab {
+    width: 100px;
+}
+
